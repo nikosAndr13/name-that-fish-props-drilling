@@ -1,21 +1,24 @@
+import {useState} from 'react';
 import "./styles/score-board.css";
+import React from "react";
 //  Where the score is presented
-const incorrectCount = 0;
-const correctCount = 0;
-const answersLeft = ["trout", "salmon", "shark", "tuna"];
+export const incorrectCount = 0;
+export const correctCount = 0;
+export const answersLeft = ["trout", "salmon", "shark", "tuna"];
 
-export const ScoreBoard = () => {
+export const ScoreBoard = (props) => {
+  const {checkFish, inCorrect, correct} = props;
   return (
     <div id="score-board">
-      <div>Incorrect 🔻: {incorrectCount}</div>
+      <div>Incorrect 🔻: {inCorrect}</div>
       <div id="choices-left">
-        {answersLeft.map((answer) => (
+        {checkFish.map((answer) => (
           <div key={answer} className="choice">
             {answer}
           </div>
         ))}
       </div>
-      <div>Correct ✅: {correctCount}</div>
+      <div>Correct ✅: {correct}</div>
     </div>
   );
 };
