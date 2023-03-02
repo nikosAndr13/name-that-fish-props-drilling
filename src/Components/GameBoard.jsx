@@ -1,6 +1,6 @@
 import "./styles/game-board.css";
 import { Images } from "../assets/images";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
 export const initialFishes = [
   {
@@ -22,17 +22,31 @@ export const initialFishes = [
 ];
 
 export const GameBoard = (props) => {
-  const {setAnswer, checkAnswer, answer, updateCount, index} = props;
+  const { checkAnswer, updateCount, index } = props;
   const nextFishToName = initialFishes[index];
+  const [answer, setAnswer] = useState("");
 
   return (
     <div id="game-board">
       <div id="fish-container">
         <img src={nextFishToName.url} alt={nextFishToName.name} />
       </div>
-      <form id="fish-guess-form" onSubmit={(e) => {e.preventDefault(); checkAnswer(answer); updateCount(answer);}}>
+      <form
+        id="fish-guess-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          checkAnswer();
+          updateCount(answer);
+        }}
+      >
         <label htmlFor="fish-guess">What kind of fish is this?</label>
-        <input type="text" name="fish-guess" onChange={(e) => {setAnswer(e.target.value)}}/>
+        <input
+          type="text"
+          name="fish-guess"
+          onChange={(e) => {
+            setAnswer(e.target.value);
+          }}
+        />
         <input type="submit" />
       </form>
     </div>
