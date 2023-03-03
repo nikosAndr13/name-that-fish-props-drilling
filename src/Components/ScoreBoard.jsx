@@ -7,13 +7,13 @@ export const correctCount = 0;
 export const answersLeft = ["trout", "salmon", "tuna", "shark"];
 
 export const ScoreBoard = (props) => {
-  const { inCorrect, correct } = props;
+  const { inCorrect, correct, filtered } = props;
 
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {inCorrect}</div>
       <div id="choices-left">
-        {answersLeft.map((answer) => (
+        {filtered.map((answer) => (
           <div key={answer} className="choice">
             {answer}
           </div>

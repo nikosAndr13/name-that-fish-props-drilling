@@ -12,17 +12,12 @@ import {
 import { initialFishes } from "./Components/GameBoard";
 
 function App() {
-  const initRender = useRef(false);
   const [index, setIndex] = useState(0);
   const [inCorrect, setInCorrect] = useState(incorrectCount);
   const [correct, setCorrect] = useState(correctCount);
+  const filtered = answersLeft.slice(index);
 
   const checkAnswer = () => setIndex(index + 1);
-
-  useEffect(() => {
-    if (initRender.current) answersLeft.shift();
-    else initRender.current = true;
-  }, [correct, inCorrect]);
 
   const updateCount = (answer) => {
     if (index !== -1 && answer === initialFishes[index].name) {
@@ -35,7 +30,11 @@ function App() {
   return (
     <div className="App">
       <header>
-        <ScoreBoard correct={correct} inCorrect={inCorrect} />
+        <ScoreBoard
+          correct={correct}
+          inCorrect={inCorrect}
+          filtered={filtered}
+        />
         {inCorrect + correct < 4 ? (
           <GameBoard
             index={index}
